@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script> <!--A-Frame basic script-->
+        <script src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script> <!--Environment script-->
+    </head>
+    <body>
+        <a-scene>
+            <!--Load assets-->
+            <a-assets timeout="3000"> <!--timeout=3000 by default, modify if loading large assets-->
+            </a-assets>
+
+            <!--Camera & controls-->
+            <a-entity id="camera" camera look-controls position="0 1.6 0"></a-entity>
+            <a-entity id="otc-left" oculus-touch-controls="hand: left"></a-entity>
+            <a-entity id="otc-right" oculus-touch-controls="hand: right"></a-entity>
+
+            <!--Environment-->
+            <a-entity id="env" environment="preset: forest"></a-entity> 
+        </a-scene>
+    </body>
+</html>
