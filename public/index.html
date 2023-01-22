@@ -14,19 +14,38 @@
             </a-assets>
 
             <!--Camera & controls-->
-            <a-entity id="camera" camera wasd-controls look-controls position="0 1.6 0"></a-entity>
+            <a-entity id="camera" camera wasd-controls look-controls position="0 1.6 0">
+                <a-entity
+                    cursor="rayOrigin:mouse;"
+                    raycaster="far:20; interval: 100; objects: .interactable"> <!--only cast 20m, every 200ms, only look for objects with class 'interactive'-->
+                </a-entity>
+            </a-entity>
             <a-entity id="otc-left" oculus-touch-controls="hand: left"></a-entity>
             <a-entity id="otc-right" oculus-touch-controls="hand: right">
             </a-entity>
-            <a-entity id="laser" laser-controls="hand: right" raycaster="lineColor: white; lineOpacity: 0.5; objects: .interactable;" laser-swap></a-entity>
+            <a-entity id="laser" laser-controls="hand: right" raycaster="lineColor: white; lineOpacity: 0.5; objects: .interactable; far:20; interval: 100; " laser-swap></a-entity>
 
             <!--Objects-->
             <a-entity 
-                id="gunTest"
+                id="gun"
+                class="interactable"
                 gltf-model="#gun"
                 position="0.5 0.75 -2"
                 scale="0.1 0.1 0.1"
                 rotation="90 210 0"
+                shadow
+                animation__enter="
+                    startEvents: mouseenter;
+                    property: scale;
+                    to: 0.12 0.12 0.12;
+                    dur: 1000;
+                "
+                animation__leave="
+                    startEvents: mouseleave;
+                    property: scale;
+                    to: 0.1 0.1 0.1;
+                    dur: 1000;
+                "
             ></a-entity>
             <a-entity 
                 id="target"
@@ -34,6 +53,7 @@
                 position="0 2 -5"
                 scale="0.5 0.5 0.5"
                 rotation="0 180 0"
+                shadow
             ></a-entity>
             <a-entity
                 id="bench"
@@ -41,10 +61,23 @@
                 position="0 0.25 -2"
                 scale="3 1 1"
                 material="color: brown;"
+                shadow
             ></a-entity>
 
             <!--Environment-->
-            <a-entity id="env" environment="preset: forest"></a-entity> 
+            <a-entity id="env" environment="preset: forest" shadow></a-entity> 
+
+            <!--Lighting-->
+            <a-entity 
+                id="sunlight"
+                position="1 1 -1"
+                light="
+                    color: #EEE;
+                    castShadow: true; 
+                    shadowBias:0.0005;
+                    intensity:0.9;
+                "
+            ></a-entity>
         </a-scene>
     </body>
 </html>
