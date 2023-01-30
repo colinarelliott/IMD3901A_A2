@@ -8,8 +8,8 @@ AFRAME.registerComponent('laser-swap',{
         CONTEXT_AF.laser = document.querySelector("#laser");
         CONTEXT_AF.laserPosition = true; //true: right, false: left
 
-        leftController.el.addEventListener('gripdown', this.leftLaser);
-        rightController.el.addEventListener('gripdown', this.rightLaser);
+        CONTEXT_AF.leftController.addEventListener('gripdown', this.leftLaser);
+        CONTEXT_AF.rightController.addEventListener('gripdown', this.rightLaser);
     },
     leftLaser: function (evt) {
         if (laserPosition === true) {
