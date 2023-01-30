@@ -1,4 +1,4 @@
-AFRAME.registerComponent('collision-check', {
+AFRAME.registerComponent('collisionCheck', {
     dependencies: ['raycaster'],
   
     init: function () {

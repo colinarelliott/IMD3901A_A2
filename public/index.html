@@ -15,16 +15,16 @@
             <a-assets timeout="3000"> <!--timeout=3000 by default, modify if loading large assets-->
                 <a-asset-item id="gun_model" src="/assets/lowPolyGun.glb" response-type="arraybuffer"></a-asset-item>
                 <a-asset-item id="target" src="/assets/target.glb" response-type="arraybuffer"></a-asset-item>
-                <audio id="gunshot" src="/assets/gunshot.mp3" preload="auto"></audio>
+                <audio id="gunshot" src="/assets/gunshot.mp3" preload="auto" volume="0.5"></audio>
             </a-assets>
 
             <!--Camera & controls-->
             <a-entity id="camera" camera wasd-controls look-controls position="0 1.6 0">
                 <a-entity
-                    id="mouseRaycaster"
+                    id="mouse-raycaster"
                     cursor="rayOrigin:mouse;"
                     raycaster="far:20; interval: 100; objects: .interactable;"
-                    collision-check> <!--only cast 20m, every 200ms, only look for objects with class 'interactable'-->
+                    collisionCheck> <!--only cast 20m, every 200ms, only look for objects with class 'interactable'-->
                 </a-entity>
             </a-entity>
             <a-entity id="otc-left" oculus-touch-controls="hand: left"></a-entity>
@@ -33,6 +33,7 @@
                 id="laser" 
                 laser-controls="hand: right" 
                 raycaster="lineColor: white; lineOpacity: 0.5; objects: .interactable; far:20; interval: 100; " 
+                collisionCheck
                 laser-swap>
             </a-entity>
 

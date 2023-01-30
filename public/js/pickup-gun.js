@@ -21,6 +21,7 @@ AFRAME.registerComponent('pickup-gun',{
             CONTEXT_AF.holdingGun = true;
             setTimeout(() => {  
                 CONTEXT_AF.scene.setAttribute("shoot-gun", "null");
+                //CONTEXT_AF.gun.classList.remove(".interactable"); <- not working but need to remove gun's interactable attribute after picked up
             }, 500);
         });
         
