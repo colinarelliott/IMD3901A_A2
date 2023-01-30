@@ -5,9 +5,10 @@
         <script src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script> <!--Environment script-->
         <script src="/js/laser-swap.js"></script>
         <script src="/js/pickup-gun.js"></script>
+        <script src="/js/shoot-gun.js"></script>
     </head>
     <body>
-        <a-scene>
+        <a-scene id="scene">
             <!--Load assets-->
             <a-assets timeout="3000"> <!--timeout=3000 by default, modify if loading large assets-->
                 <a-asset-item id="gun_model" src="/assets/lowPolyGun.glb" response-type="arraybuffer"></a-asset-item>
