@@ -19,7 +19,9 @@ AFRAME.registerComponent('pickup-gun',{
             copy.setAttribute("position", "0.5 -0.25 -0.5");
             copy.setAttribute("rotation", "0 110 0");
             CONTEXT_AF.holdingGun = true;
-            setTimeout(() => {  CONTEXT_AF.scene.setAttribute("shoot-gun", "null"); }, 500);
+            setTimeout(() => {  
+                CONTEXT_AF.scene.setAttribute("shoot-gun", "null"); 
+            }, 500);
         });
         
     }
