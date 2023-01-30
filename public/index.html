@@ -7,6 +7,7 @@
         <script src="/js/laser-swap.js"></script>
         <script src="/js/pickup-gun.js"></script>
         <script src="/js/shoot-gun.js"></script>
+        <script src="/js/collision-check.js"></script>
     </head>
     <body>
         <a-scene id="scene">
@@ -22,13 +23,18 @@
                 <a-entity
                     id="mouseRaycaster"
                     cursor="rayOrigin:mouse;"
-                    raycaster="far:20; interval: 100; objects: .interactable;"> <!--only cast 20m, every 200ms, only look for objects with class 'interactable'-->
+                    raycaster="far:20; interval: 100; objects: .interactable;"
+                    collision-check> <!--only cast 20m, every 200ms, only look for objects with class 'interactable'-->
                 </a-entity>
             </a-entity>
             <a-entity id="otc-left" oculus-touch-controls="hand: left"></a-entity>
-            <a-entity id="otc-right" oculus-touch-controls="hand: right">
+            <a-entity id="otc-right" oculus-touch-controls="hand: right"></a-entity>
+            <a-entity 
+                id="laser" 
+                laser-controls="hand: right" 
+                raycaster="lineColor: white; lineOpacity: 0.5; objects: .interactable; far:20; interval: 100; " 
+                laser-swap>
             </a-entity>
-            <a-entity id="laser" laser-controls="hand: right" raycaster="lineColor: white; lineOpacity: 0.5; objects: .interactable; far:20; interval: 100; " laser-swap></a-entity>
 
             <!--Objects-->
             <a-entity 
