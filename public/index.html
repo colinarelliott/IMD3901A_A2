@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<!--
+METADATA
+Author: Colin Elliott
+Date: 2021-03-01
+Class: IMD 3901
+Description: Assignment 2
+Assets: self-made
+Sounds: from Epidemic Sound license
+-->
 <html>
     <head>
         <!--A-frame and environment scripts-->
@@ -9,14 +18,21 @@
         <script src="/js/pickup-gun.js"></script>
         <script src="/js/shoot-gun.js"></script>
         <script src="/js/collision-check.js"></script>
+        <script src="/js/game-manager.js"></script>
     </head>
     <body>
         <a-scene id="scene">
+            <a-entity 
+                id="game-manager" 
+                game-manager="gameOn: false;"
+            >
+            </a-entity>
             <!--Load assets-->
             <a-assets timeout="3000"> <!--timeout=3000 by default, modify if loading large assets-->
                 <a-asset-item id="gun_model" src="/assets/lowPolyGun.glb" response-type="arraybuffer"></a-asset-item>
                 <a-asset-item id="target" src="/assets/target.glb" response-type="arraybuffer"></a-asset-item>
                 <audio id="gunshot" src="/assets/gunshot.mp3" preload="auto" volume="0.5"></audio>
+                <audio id="gunshot-hit" src="/assets/gunshot_hit.mp3" preload="auto" volume="0.5"></audio>
             </a-assets>
 
             <!--Camera & controls-->
@@ -26,6 +42,11 @@
                     cursor="rayOrigin:mouse;"
                     raycaster="far:20; interval: 100; objects: .interactable;"> <!--only cast 20m, every 200ms, only look for objects with class 'interactable'-->
                 </a-entity>
+                <a-entity
+                    id="score-display"
+                    text="value: pickup the gun; color: white; align: center; width: 2;"
+                    position="0 0.5 -1"
+                ></a-entity>
             </a-entity>
             <a-entity id="otc-left" oculus-touch-controls="hand: left"></a-entity>
             <a-entity id="otc-right" oculus-touch-controls="hand: right"></a-entity>
@@ -61,7 +82,13 @@
                     dur: 1000;
                 "
                 sound = "src: #gunshot; poolSize: 20;"
+                
             ></a-entity>
+            <a-entity
+                id="hit-sound"
+                sound = "src: #gunshot-hit; poolSize: 20;"
+            >
+            </a-entity>
             <a-entity 
                 id="target"
                 class="shootMe"

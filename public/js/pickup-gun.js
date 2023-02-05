@@ -6,7 +6,7 @@ AFRAME.registerComponent('pickup-gun',{
 
     init: function () {
         const CONTEXT_AF = this;
-        //get the gun, camera, mouse raycaster, laser, scene, and right controller
+        //get the gun, camera, mouse raycaster, laser, scene, right controller and score display
         CONTEXT_AF.holdingGun = false;
         CONTEXT_AF.gun = document.querySelector("#gun");
         CONTEXT_AF.camera = document.querySelector("#camera");
@@ -14,6 +14,7 @@ AFRAME.registerComponent('pickup-gun',{
         CONTEXT_AF.laser = document.querySelector("#laser");
         CONTEXT_AF.scene = document.querySelector("#scene");
         CONTEXT_AF.rCon = document.querySelector("#otc-right");
+        CONTEXT_AF.scoreDisplay = document.querySelector("#score-display");
 
         CONTEXT_AF.el.addEventListener('click', function() {
             //make a copy of the gun
@@ -44,6 +45,8 @@ AFRAME.registerComponent('pickup-gun',{
                 CONTEXT_AF.mouseRaycaster.setAttribute("raycaster", "far:80; interval: 10; objects: .shootMe;");
                 CONTEXT_AF.laser.setAttribute("raycaster", "far:80; interval: 10; objects: .shootMe;");
             }, 500);
+            //update score display with instructions
+            CONTEXT_AF.scoreDisplay.setAttribute("text", "value: shoot the target");
         });
         
     }
