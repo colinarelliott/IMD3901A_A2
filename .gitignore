@@ -441,3 +441,4 @@ ref/user-gesture.css
 package-lock.json
 
 .DS_Store*
+.DS_store
