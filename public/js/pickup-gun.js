@@ -1,4 +1,4 @@
-//a script that allows you to pickup objects in the scene, WORKING!
+//a script that allows you to pickup the gun object to start shooting, WORKING!
 
 AFRAME.registerComponent('pickup-gun',{
     schema : {
@@ -21,14 +21,14 @@ AFRAME.registerComponent('pickup-gun',{
             if (navigator.userAgent.includes("Quest") === true) {
                 //make the original gun invisible and add the copy to the right controller
                 CONTEXT_AF.rCon.appendChild(copy);
-                CONTEXT_AF.gun.setAttribute("visible", false);
+                CONTEXT_AF.gun.remove();
                 CONTEXT_AF.gun = copy;
                 copy.setAttribute("position", "0 -0.1 0");
                 copy.setAttribute("rotation", "0 90 -45");
             } else {
                 //make the original gun invisible and add the copy to the camera
                 CONTEXT_AF.camera.appendChild(copy);
-                CONTEXT_AF.gun.setAttribute("visible", false);
+                CONTEXT_AF.gun.remove();
                 CONTEXT_AF.gun = copy;
                 copy.setAttribute("position", "0.5 -0.25 -0.5");
                 copy.setAttribute("rotation", "0 110 0");
