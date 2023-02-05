@@ -6,6 +6,7 @@ AFRAME.registerComponent('pickup-gun',{
 
     init: function () {
         const CONTEXT_AF = this;
+        //get the gun, camera, mouse raycaster, laser, scene, and right controller
         CONTEXT_AF.holdingGun = false;
         CONTEXT_AF.gun = document.querySelector("#gun");
         CONTEXT_AF.camera = document.querySelector("#camera");
