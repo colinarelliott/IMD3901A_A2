@@ -5,16 +5,26 @@ AFRAME.registerComponent('shoot-gun',{
     init: function () {
         const CONTEXT_AF = this;
         CONTEXT_AF.gun = document.querySelector("#gun");
-        CONTEXT_AF.mouseRaycaster = document.querySelector("#mouse-raycaster");
+        CONTEXT_AF.camera = document.querySelector("#camera");
+        CONTEXT_AF.pLaser = document.querySelector("#player-laser-wrapper");
 
         CONTEXT_AF.el.addEventListener('click', function() {
             console.log("bang!");
             CONTEXT_AF.gun.components.sound.playSound();
 
-            /*if (CONTEXT_AF.mouseRaycaster.components.collisionCheck.isTarget === true) {
-                let killEntities = CONTEXT_AF.mouseRaycaster.components.raycaster.intersectedEIs;
-                console.log(killEntities);
-            }*/
+            //check to see if user is using Quest or not
+            if (navigator.userAgent.includes("Quest") === true) {
+                //code for quest collision detection check
+            } else {
+                if (CONTEXT_AF.camera.components['collision-check'].data.isTarget === true) {
+                    console.log("hit target!");
+                    var target = document.querySelector("#" + CONTEXT_AF.camera.components['collision-check'].data.currentIntersected);
+                    target.setAttribute("visible", false);
+                    target.classList.remove("shootMe");
+                }
+            }
+
+            
         });
     }
 });
