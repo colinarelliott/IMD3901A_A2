@@ -9,6 +9,8 @@ AFRAME.registerComponent('pickup-gun',{
         CONTEXT_AF.holdingGun = false;
         CONTEXT_AF.gun = document.querySelector("#gun");
         CONTEXT_AF.camera = document.querySelector("#camera");
+        CONTEXT_AF.mouseRaycaster = document.querySelector("#mouse-raycaster");
+        CONTEXT_AF.laser = document.querySelector("#laser");
         CONTEXT_AF.scene = document.querySelector("#scene");
         CONTEXT_AF.rCon = document.querySelector("#otc-right");
 
@@ -36,7 +38,10 @@ AFRAME.registerComponent('pickup-gun',{
             setTimeout(() => {  
                 //remove held gun's interactability, add shoot-gun component to scene
                 CONTEXT_AF.scene.setAttribute("shoot-gun", "null");
-                CONTEXT_AF.gun.classList.remove("interactable"); 
+                CONTEXT_AF.gun.classList.remove("interactable");
+                //update raycasters to shoot targets
+                CONTEXT_AF.mouseRaycaster.setAttribute("raycaster", "far:80; interval: 10; objects: .shootMe;");
+                CONTEXT_AF.laser.setAttribute("raycaster", "far:80; interval: 10; objects: .shootMe;");
             }, 500);
         });
         

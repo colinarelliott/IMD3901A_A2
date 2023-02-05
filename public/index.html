@@ -19,22 +19,23 @@
             </a-assets>
 
             <!--Camera & controls-->
-            <a-entity id="camera" camera wasd-controls look-controls position="0 1.6 0">
+            <a-entity id="camera" camera wasd-controls look-controls position="0 1.6 0" collision-check>
                 <a-entity
                     id="mouse-raycaster"
                     cursor="rayOrigin:mouse;"
-                    raycaster="far:20; interval: 100; objects: .interactable;"
-                    collisionCheck> <!--only cast 20m, every 200ms, only look for objects with class 'interactable'-->
+                    raycaster="far:20; interval: 100; objects: .interactable;"> <!--only cast 20m, every 200ms, only look for objects with class 'interactable'-->
                 </a-entity>
             </a-entity>
             <a-entity id="otc-left" oculus-touch-controls="hand: left"></a-entity>
             <a-entity id="otc-right" oculus-touch-controls="hand: right"></a-entity>
-            <a-entity 
-                id="laser" 
-                laser-controls="hand: right" 
-                raycaster="lineColor: white; lineOpacity: 0.5; objects: .interactable; far:20; interval: 100; " 
-                collisionCheck
-                laser-swap>
+            <a-entity id="player-laser-wrapper">
+                <a-entity 
+                    id="laser" 
+                    laser-controls="hand: right" 
+                    raycaster="lineColor: white; lineOpacity: 0.5; objects: .interactable; far:20; interval: 100; " 
+                    collision-check
+                    laser-swap>
+                </a-entity>
             </a-entity>
 
             <!--Objects-->

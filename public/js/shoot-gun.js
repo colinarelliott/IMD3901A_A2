@@ -11,10 +11,10 @@ AFRAME.registerComponent('shoot-gun',{
             console.log("bang!");
             CONTEXT_AF.gun.components.sound.playSound();
 
-            if (CONTEXT_AF.mouseRaycaster.components.collisionCheck.isTarget === true) {
+            /*if (CONTEXT_AF.mouseRaycaster.components.collisionCheck.isTarget === true) {
                 let killEntities = CONTEXT_AF.mouseRaycaster.components.raycaster.intersectedEIs;
                 console.log(killEntities);
-            }
+            }*/
         });
     }
 });
