@@ -1,7 +1,10 @@
+//this component is attached to the parent of each raycaster element and will check for collisions with objects that have the class "shootMe"
+
 AFRAME.registerComponent('collision-check', {
     dependencies: ['raycaster'],
 
     schema: {
+        //data for the component to know if it's intersecting a target and which one
         isTarget: {type: 'boolean', default: false},
         currentIntersected: {type: 'string', default: null}
     },
@@ -9,24 +12,22 @@ AFRAME.registerComponent('collision-check', {
     init: function () {
         const CONTEXT_AF = this;
 
+        //on raycaster intersection, check to see if the intersected object has the class "shootMe"
         CONTEXT_AF.el.addEventListener('raycaster-intersection', function (evt) {
             if (evt.detail.els[0].classList.contains('shootMe')) {
-                console.log('shootable object intersected');
+                //set the isTarget flag to true and set the currentIntersected to the id of the intersected object
                 CONTEXT_AF.data.isTarget = true;
                 CONTEXT_AF.data.currentIntersected = evt.detail.els[0].id;
-                console.log(CONTEXT_AF.data.currentIntersected);
             } else {
-                console.log('not a collidable object');
+                //set the isTarget flag to false and set the currentIntersected to null
                 CONTEXT_AF.data.isTarget = false;
                 CONTEXT_AF.data.currentIntersected = null;
-                console.log("nothing");
             }
         });
+        //on raycaster intersection cleared, set the isTarget flag to false and set the currentIntersected to null
         CONTEXT_AF.el.addEventListener('raycaster-intersection-cleared', function() {
-            console.log('raycaster intersection cleared');
             CONTEXT_AF.data.isTarget = false;
             CONTEXT_AF.data.currentIntersected = null;
-            console.log("nothing");
         });
     }
   });
