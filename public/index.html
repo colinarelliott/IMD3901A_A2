@@ -28,12 +28,11 @@
             </a-entity>
             <a-entity id="otc-left" oculus-touch-controls="hand: left"></a-entity>
             <a-entity id="otc-right" oculus-touch-controls="hand: right"></a-entity>
-            <a-entity id="player-laser-wrapper">
+            <a-entity id="player-laser-wrapper" collision-check>
                 <a-entity 
                     id="laser" 
                     laser-controls="hand: right" 
                     raycaster="lineColor: white; lineOpacity: 0.5; objects: .interactable; far:20; interval: 100; " 
-                    collision-check
                     laser-swap>
                 </a-entity>
             </a-entity>
