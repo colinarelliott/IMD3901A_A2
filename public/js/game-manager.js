@@ -53,7 +53,7 @@ AFRAME.registerComponent('game-manager' , {
             newTarget.setAttribute("class", "shootMe");
             newTarget.setAttribute("gltf-model", "#target_model");
             newTarget.setAttribute("rotation", "0 180 0");
-            newTarget.setAttribute("position", {x: Math.random() * 10 - 5, y: Math.random() * 5, z: Math.random() *5 -15});
+            newTarget.setAttribute("position", {x: Math.random() * 10 - 5, y: Math.random() * 5 +2, z: Math.random() *5 -15});
             //add the target to the scene
             CONTEXT_AF.scene.appendChild(newTarget);
         }, 1000);
