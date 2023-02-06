@@ -5,6 +5,7 @@ AFRAME.registerComponent('game-manager' , {
     schema : {
         gameOn : {type: 'boolean', default: false},
         score : {type: 'number', default: 0},
+        targetNo : {type: 'number', default: 0},
     },
 
     init: function () {
@@ -45,10 +46,13 @@ AFRAME.registerComponent('game-manager' , {
             //create a new target
             var newTarget = document.createElement("a-entity");
             //set the target's attributes
+            console.log(CONTEXT_AF.data);
+            //CONTEXT_AF.data.targetNo++;
+            //newTarget.setAttribute("id", "target" + CONTEXT_AF.data.targetNo); 
             newTarget.setAttribute("class", "shootMe");
             newTarget.setAttribute("gltf-model", "#target_model");
             newTarget.setAttribute("rotation", "0 180 0");
-            newTarget.setAttribute("position", {x: Math.random() * 10 - 5, y: Math.random() * 5, z: Math.random() -10});
+            newTarget.setAttribute("position", {x: Math.random() * 10 - 5, y: Math.random() * 5, z: Math.random() *5 -15});
             //add the target to the scene
             CONTEXT_AF.scene.appendChild(newTarget);
             CONTEXT_AF.createTarget();
