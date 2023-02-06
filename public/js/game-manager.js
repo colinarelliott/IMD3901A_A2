@@ -5,11 +5,15 @@ AFRAME.registerComponent('game-manager' , {
     schema : {
         gameOn : {type: 'boolean', default: false},
         score : {type: 'number', default: 0},
-        onceLock : {type: 'boolean', default: true}
     },
 
     init: function () {
         const CONTEXT_AF = this;
+        CONTEXT_AF.target = document.querySelector("#target");
+
+        CONTEXT_AF.target.addEventListener('click', function() {
+            setInterval(CONTEXT_AF.createTarget, 1000);
+        });
     },
 
     tick: function () {
@@ -20,12 +24,7 @@ AFRAME.registerComponent('game-manager' , {
             //display the score
             CONTEXT_AF.scoreDisplay.setAttribute("text", "value: score: " + CONTEXT_AF.data.score);
 
-            //start a countdown function that will create a new a-entity with text in the middle of the screen and display the countdown from 3 to 1
-            if (CONTEXT_AF.onceLock === true) {
-                CONTEXT_AF.countdown();
-                console.log("countdown started");
-                CONTEXT_AF.onceLock = false;
-            }
+
             //check to see if there are any targets left
             /*if (document.getElementsByClassName("shootMe").length === 0) {
                 //if there are no targets left, end the game
@@ -38,13 +37,21 @@ AFRAME.registerComponent('game-manager' , {
         }
     },
 
-    remove: function (evt) {
+    createTarget() {
         const CONTEXT_AF = this;
-        //if this has the class "shootMe", remove it from the scene
-        if (evt.target.classList.contains("shootMe")) {
-            CONTEXT_AF.scene.removeChild(evt.target);
-            //update the score
-            CONTEXT_AF.data.score++;
-        }
+        CONTEXT_AF.scene = document.querySelector("#scene");
+        //create a new target every 0.5 seconds with a random position
+        setTimeout(() => {
+            //create a new target
+            var newTarget = document.createElement("a-entity");
+            //set the target's attributes
+            newTarget.setAttribute("class", "shootMe");
+            newTarget.setAttribute("gltf-model", "#target_model");
+            newTarget.setAttribute("rotation", "0 180 0");
+            newTarget.setAttribute("position", {x: Math.random() * 10 - 5, y: Math.random() * 5, z: Math.random() -10});
+            //add the target to the scene
+            CONTEXT_AF.scene.appendChild(newTarget);
+            CONTEXT_AF.createTarget();
+        }, 1000);
     }
 });

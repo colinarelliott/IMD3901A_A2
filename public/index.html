@@ -30,7 +30,7 @@ Sounds: from Epidemic Sound license
             <!--Load assets-->
             <a-assets timeout="3000"> <!--timeout=3000 by default, modify if loading large assets-->
                 <a-asset-item id="gun_model" src="/assets/lowPolyGun.glb" response-type="arraybuffer"></a-asset-item>
-                <a-asset-item id="target" src="/assets/target.glb" response-type="arraybuffer"></a-asset-item>
+                <a-asset-item id="target_model" src="/assets/target.glb" response-type="arraybuffer"></a-asset-item>
                 <audio id="gunshot" src="/assets/gunshot.mp3" preload="auto" volume="0.5"></audio>
                 <audio id="gunshot-hit" src="/assets/gunshot_hit.mp3" preload="auto" volume="0.5"></audio>
             </a-assets>
@@ -93,7 +93,7 @@ Sounds: from Epidemic Sound license
             <a-entity 
                 id="target"
                 class="shootMe"
-                gltf-model="#target"
+                gltf-model="#target_model"
                 position="0 2 -5"
                 scale="0.5 0.5 0.5"
                 rotation="0 180 0"

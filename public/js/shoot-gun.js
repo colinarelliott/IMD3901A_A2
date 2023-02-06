@@ -24,6 +24,7 @@ AFRAME.registerComponent('shoot-gun',{
                 CONTEXT_AF.target = document.querySelector("#target");
                 CONTEXT_AF.target.remove();
                 CONTEXT_AF.gameManager.components['game-manager'].data.gameOn = true;
+                
                 console.log("game started");
             } else {
                 //play the gun sound
