@@ -23,8 +23,8 @@ Sounds: from Epidemic Sound license
     <body>
         <a-scene id="scene">
             <a-entity 
-                id="game-manager" 
-                game-manager="gameOn: false;"
+                id="game-manager"
+                game-manager
             >
             </a-entity>
             <!--Load assets-->
@@ -37,6 +37,7 @@ Sounds: from Epidemic Sound license
 
             <!--Camera & controls-->
             <a-entity id="camera" camera wasd-controls look-controls position="0 1.6 0" collision-check>
+                
                 <a-entity
                     id="mouse-raycaster"
                     cursor="rayOrigin:mouse;"
@@ -57,6 +58,10 @@ Sounds: from Epidemic Sound license
                     raycaster="lineColor: white; lineOpacity: 0.5; objects: .interactable; far:20; interval: 100; " 
                     laser-swap>
                 </a-entity>
+                <a-entity
+                    id="hit-sound"
+                    sound = "src: #gunshot-hit; poolSize: 20;"
+                >
             </a-entity>
 
             <!--Objects-->
@@ -84,10 +89,6 @@ Sounds: from Epidemic Sound license
                 sound = "src: #gunshot; poolSize: 20;"
                 
             ></a-entity>
-            <a-entity
-                id="hit-sound"
-                sound = "src: #gunshot-hit; poolSize: 20;"
-            >
             </a-entity>
             <a-entity 
                 id="target"

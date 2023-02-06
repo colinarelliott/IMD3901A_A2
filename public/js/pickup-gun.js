@@ -46,7 +46,7 @@ AFRAME.registerComponent('pickup-gun',{
                 CONTEXT_AF.laser.setAttribute("raycaster", "far:80; interval: 10; objects: .shootMe;");
             }, 500);
             //update score display with instructions
-            CONTEXT_AF.scoreDisplay.setAttribute("text", "value: shoot the target");
+            CONTEXT_AF.scoreDisplay.setAttribute("text", "value: shoot the target to start!");
         });
         
     }

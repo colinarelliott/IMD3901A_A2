@@ -19,14 +19,14 @@ AFRAME.registerComponent('shoot-gun',{
         CONTEXT_AF.el.addEventListener('click', function() {
             //if the collided object is a target
             if (CONTEXT_AF.camera.components['collision-check'].data.isTarget === true) {
+                //play the hit sound, remove the target, and start the game
                 CONTEXT_AF.hitSound.components.sound.playSound();
-                //remove the target
-                console.log("target hit!")
+                CONTEXT_AF.target = document.querySelector("#target");
                 CONTEXT_AF.target.remove();
-
-                //start the game
-                //CONTEXT_AF.gameManager.setAttribute("game-manager", "gameOn: true");
+                CONTEXT_AF.gameManager.components['game-manager'].data.gameOn = true;
+                console.log("game started");
             } else {
+                //play the gun sound
                 CONTEXT_AF.gun.components.sound.playSound();
             }
         });
