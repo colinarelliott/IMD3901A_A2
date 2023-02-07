@@ -42,8 +42,8 @@ AFRAME.registerComponent('pickup-gun',{
                 CONTEXT_AF.scene.setAttribute("shoot-gun", "null");
                 CONTEXT_AF.gun.classList.remove("interactable");
                 //update raycasters to shoot targets
-                CONTEXT_AF.mouseRaycaster.setAttribute("raycaster", "far:80; interval: 10; objects: .shootMe;");
-                CONTEXT_AF.laser.setAttribute("raycaster", "far:80; interval: 10; objects: .shootMe;");
+                CONTEXT_AF.mouseRaycaster.setAttribute("raycaster", "far:80; interval: 12; objects: .shootMe;");
+                CONTEXT_AF.laser.setAttribute("raycaster", "far:80; interval: 12; objects: .shootMe;");
             }, 500);
             //update score display with instructions
             CONTEXT_AF.scoreDisplay.setAttribute("text", "value: shoot the target to start!");
