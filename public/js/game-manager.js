@@ -6,6 +6,7 @@ AFRAME.registerComponent('game-manager' , {
         gameOn : {type: 'boolean', default: false},
         score : {type: 'number', default: 0},
         miss : {type: 'number', default: 0},
+        targets : {type: 'number', default: 0},
     },
 
     init: function () {
@@ -14,7 +15,7 @@ AFRAME.registerComponent('game-manager' , {
 
         //when the first target is clicked, start the game
         CONTEXT_AF.target.addEventListener('click', function() {
-            setInterval(CONTEXT_AF.createTarget, 1000); //create a new target every second
+            gameTime = setInterval(CONTEXT_AF.createTarget, 1000); //create a new target every second
             CONTEXT_AF.data.gameOn = true;
         });
     },
@@ -29,6 +30,24 @@ AFRAME.registerComponent('game-manager' , {
             //display the final score
             //CONTEXT_AF.scoreDisplay.setAttribute("text", "value: final score: " + CONTEXT_AF.data.score);
         }
+        
+
+        //end of game - targets = 50
+        if (CONTEXT_AF.data.targets >= 10) {
+            //stop creating new targets
+            clearInterval(gameTime);
+            //remove all targets
+            var allTargets = document.querySelectorAll(".shootMe");
+            for (var i = 0; i < allTargets.length; i++) {
+                allTargets[i].remove();
+            }
+            //stop the game
+            CONTEXT_AF.data.gameOn = false;
+            //display the final score
+            CONTEXT_AF.scoreDisplay.setAttribute("text", "value: " + CONTEXT_AF.data.score + " / " + CONTEXT_AF.data.targets + " targets hit! \n\n" + CONTEXT_AF.data.miss + " targets missed.");
+            
+        }
+
         console.log(CONTEXT_AF.data.gameOn);
     },
 
@@ -38,6 +57,7 @@ AFRAME.registerComponent('game-manager' , {
         //create a new target every 0.5 seconds with a random position
         setTimeout(() => {
             //create a new target
+            CONTEXT_AF.data.targets = CONTEXT_AF.data.targets + 1;
             var newTarget = document.createElement("a-entity");
             newTarget.setAttribute("id", "target" + Math.round(Math.random()*100000));
             newTarget.setAttribute("class", "shootMe");
