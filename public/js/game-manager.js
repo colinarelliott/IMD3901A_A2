@@ -47,8 +47,6 @@ AFRAME.registerComponent('game-manager' , {
             CONTEXT_AF.scoreDisplay.setAttribute("text", "value: " + CONTEXT_AF.data.score + " / " + CONTEXT_AF.data.targets + " targets hit! \n\n" + CONTEXT_AF.data.miss + " targets missed.");
             
         }
-
-        console.log(CONTEXT_AF.data.gameOn);
     },
 
     createTarget() {
