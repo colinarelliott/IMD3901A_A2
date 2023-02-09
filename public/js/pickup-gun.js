@@ -49,6 +49,25 @@ AFRAME.registerComponent('pickup-gun',{
             }, 500);
             //update score display with instructions
             CONTEXT_AF.scoreDisplay.setAttribute("text", "value: shoot the target to start!");
+
+
+            //WIP BENCH FUNCTIONALITY
+            if (CONTEXT_AF.holdingGun === true) {
+                //if the bench is clicked, remove the gun and add it back to the scene
+                CONTEXT_AF.el.addEventListener('click', function() {
+                    CONTEXT_AF.scene.appendChild(CONTEXT_AF.gun);
+                    CONTEXT_AF.gun.setAttribute("position", CONTEXT_AF.data.gunPos);
+                    CONTEXT_AF.gun.setAttribute("rotation", CONTEXT_AF.data.gunRot);
+                    CONTEXT_AF.holdingGun = false;
+                    //update raycasters to not shoot targets
+                    CONTEXT_AF.mouseRaycaster.setAttribute("raycaster", "far:80; interval: 12; objects: .interactable;");
+                    CONTEXT_AF.laser.setAttribute("raycaster", "far:80; interval: 12; objects: .interactable;");
+                    //remove shoot-gun component from scene
+                    CONTEXT_AF.scene.removeAttribute("shoot-gun");
+                    //update score display with instructions
+                    CONTEXT_AF.scoreDisplay.setAttribute("text", "value: pick up the gun to start!");
+                });
+            }
         });
         
     }
