@@ -33,7 +33,7 @@ AFRAME.registerComponent('game-manager' , {
         
 
         //end of game - targets = 50
-        if (CONTEXT_AF.data.targets >= 10) {
+        if (CONTEXT_AF.data.targets > 50 ) {
             //stop creating new targets
             clearInterval(gameTime);
             //remove all targets
