@@ -17,6 +17,7 @@ AFRAME.registerComponent('shoot-gun',{
 
         //when the user clicks the trigger
         CONTEXT_AF.el.addEventListener('click', function() {
+            CONTEXT_AF.el.emit(`shoot`, null, false);
             //if the collided object is a target
             if (CONTEXT_AF.camera.components['collision-check'].data.isTarget === true) {
                 //play the hit sound, remove the target, and start the game
