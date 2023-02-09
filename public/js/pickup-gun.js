@@ -2,6 +2,8 @@
 
 AFRAME.registerComponent('pickup-gun',{
     schema : {
+        gunPos : {type: 'vec3', default: {x: 0.5, y: 0.75, z: -1.5}},
+        gunRot : {type: 'vec3', default: {x: 90, y: 230, z: 0}},
     },
 
     init: function () {
