@@ -1,15 +1,14 @@
 //a script that allows you to pickup the gun object to start shooting, WORKING!
 
 AFRAME.registerComponent('pickup-gun',{
+    //store public data with holdingGun flag
     schema : {
-        gunPos : {type: 'vec3', default: {x: 0.5, y: 0.75, z: -1.5}},
-        gunRot : {type: 'vec3', default: {x: 90, y: 230, z: 0}},
         holdingGun : {type: 'boolean', default: false}
     },
 
     init: function () {
         const CONTEXT_AF = this;
-        //get the gun, camera, mouse raycaster, laser, scene, right controller and score display
+        //get references to the gun, camera, mouse raycaster, laser raycaster, scene, right controller, score display, and game manager
         CONTEXT_AF.data.holdingGun = false;
         CONTEXT_AF.gun = document.querySelector("#gun");
         CONTEXT_AF.camera = document.querySelector("#camera");

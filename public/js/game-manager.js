@@ -81,6 +81,7 @@ AFRAME.registerComponent('game-manager' , {
                 CONTEXT_AF.mouseRaycaster.setAttribute("raycaster", "far:20; interval: 100; objects: .interactable;");
                 CONTEXT_AF.laser.setAttribute("raycaster", "far:20; interval: 100; objects: .interactable;");
                 CONTEXT_AF.scene.removeAttribute("shoot-gun");
+                //reset game manager data
                 CONTEXT_AF.data.score = 0;
                 CONTEXT_AF.data.miss = 0;
                 CONTEXT_AF.data.targets = 0;

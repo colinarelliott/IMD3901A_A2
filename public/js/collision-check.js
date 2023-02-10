@@ -1,6 +1,7 @@
 //this component is attached to the parent of each raycaster element and will check for collisions with objects that have the class "shootMe"
 
 AFRAME.registerComponent('collision-check', {
+    //grab the raycaster component
     dependencies: ['raycaster'],
 
     schema: {
