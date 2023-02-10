@@ -11,7 +11,7 @@ This repository contains code for an assignment related to one of my university 
 ## Reflection:
 
 #### Introduction:
-For this assignment I decided to make a simple target practice game. I started out by getting a basic A-Frame scene in place with an environment component, then modeled two simple things: the gun and the target. From here I worked almost entirely in JS to build 5 custom components that facilitate the game.
+For this assignment I decided to make a simple target practice game. I started out by getting a basic A-Frame scene in place with an environment component, then modeled two simple things: the gun and the target. From here I worked almost entirely in JS to build 4 custom components that facilitate the game.
 
 1. **pickup-gun.js**: facilitates the ability to pickup (and put back, after round over) the gun from the bench
 2. **shoot-gun.js**: facilitates the ability to shoot the gun during gameplay. Plays sounds, etc.
