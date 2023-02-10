@@ -27,3 +27,11 @@ The game starts with a gun on a table in front of the user and a single target d
 
 #### Challenges & Successes:
 I spent a long time integrating these features. Some of the hardest included the game manager's flow, accessing data between scripts, and just generally relearning best practices for JS and learning A-Frame. However, considering all of the challenges and time, I would say that most of it is just growing pains of learning A-Frame. I am feeling generally very pleased by the simplicity of programming with A-Frame and NodeJS as well as how similar to the web-development workflow it is. 
+
+#### How to run:
+1. Clone repository
+2. Install NodeJS
+3. Open Folder in Terminal
+4. ```npm install```
+5. ```node app.js```
+6. Navigate to http://localhost:8080 on your computer.
