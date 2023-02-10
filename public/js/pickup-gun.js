@@ -61,6 +61,7 @@ AFRAME.registerComponent('pickup-gun',{
 
             //initialize game manager
             CONTEXT_AF.gameManager.setAttribute("game-manager", "");
+            CONTEXT_AF.gameManager.setAttribute("sound" ,"src: #music; autoplay: true; volume: 0.5;");
             CONTEXT_AF.gameManager.components['game-manager'].data.shots = 0;
             
             //set the score display to show instructions

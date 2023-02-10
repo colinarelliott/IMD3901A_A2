@@ -22,6 +22,7 @@ AFRAME.registerComponent('shoot-gun',{
             //if the collided object is a target
             if (CONTEXT_AF.camera.components['collision-check'].data.isTarget === true) {
                 //play the hit sound, remove the target, and start the game
+
                 CONTEXT_AF.hitSound.components.sound.playSound();
                 CONTEXT_AF.target = document.querySelector("#" + CONTEXT_AF.camera.components['collision-check'].data.currentIntersected);
                 CONTEXT_AF.target.remove();
