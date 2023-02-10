@@ -25,6 +25,9 @@ For this assignment I decided to make a simple target practice game. I started o
 #### Gameplay Description:
 The game starts with a gun on a table in front of the user and a single target downrange. The game instructs the user to pick up the gun. Once the gun is picked up, music starts and the game instructs the user to shoot the target. Once the target is shot, the game begins and targets start spawning at random down range. Shoot the targets to get points. Try to shoot them in the least amount of shots possible! Once the game ends (after 50 targets), the gun will be placed back on the table prompting the user to once again pick it up to try again.
 
+#### Video Demonstration:
+*[Link to Video Demo](https://youtu.be/rq5ql_oJ2Z0)*
+
 #### Challenges & Successes:
 Some of the hardest features to integrate included the game manager's flow, accessing data between scripts, and just generally relearning best practices for JS and learning A-Frame. My biggest challenge however, was integrating Meta Quest support. I couldn't seem to get the raycaster to work reliably on Quest and maybe I'm missing something but I ran out of time to integrate it in the end. For most of development I had a file called 'laser-swap.js' in the repository and I was going to use it to allow swapping the 'active hand' between the two Quest controllers and I also couldn't get this to work. On the bright side I have learned a few things about how the Quest interacts and will spend more time learning it for the term project. In the end, I decided that this project would be PC & Mobile only. I may come back in the future and add Quest support and more features though... it's kind of a fun game.
 
@@ -37,3 +40,4 @@ However, considering all of the challenges and time, I would say that most of it
 4. ```npm install```
 5. ```node app.js```
 6. Navigate to http://localhost:8080 on your computer.
+
