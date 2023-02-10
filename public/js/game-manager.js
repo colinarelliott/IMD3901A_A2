@@ -42,8 +42,8 @@ AFRAME.registerComponent('game-manager' , {
                 + Math.round(CONTEXT_AF.data.shots/2) + " shots fired.");
         }
 
-        //END OF GAME -> targets = 50 
-        if (CONTEXT_AF.data.targets >= 10 && CONTEXT_AF.data.gameOn === true) {
+        //END OF GAME -> targets = 25
+        if (CONTEXT_AF.data.targets >= 25 && CONTEXT_AF.data.gameOn === true) {
 
             //stop creating new targets
             clearInterval(gameTime);
