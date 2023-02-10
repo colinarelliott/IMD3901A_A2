@@ -42,13 +42,14 @@ Sounds: from Epidemic Sound license
                 
                 <a-entity
                     id="mouse-raycaster"
-                    cursor="rayOrigin:mouse;"
+                    cursor="rayOrigin:mouse; fuseTimeout: 0;" 
                     raycaster="far:20; interval: 100; objects: .interactable;"> <!--only cast 20m, every 200ms, only look for objects with class 'interactable'-->
                 </a-entity>
                 <a-entity
                     id="score-display"
-                    text="value: pickup the gun; color: white; align: center; width: 2;"
+                    text="value: pickup the gun; color: white; align: center; width: 2; height: 1;"
                     position="0 0.5 -1"
+
                 ></a-entity>
             </a-entity>
             <a-entity id="otc-left" oculus-touch-controls="hand: left"></a-entity>
@@ -89,11 +90,12 @@ Sounds: from Epidemic Sound license
                     dur: 1000;
                 "
                 animation__shoot="
-                    property: rotation.x;
+                    property: rotation;
                     startEvents: shoot;
-                    to: 90;
-                    from: 110;
-                    dur: 100;
+                    to: 0 110 0;
+                    from: 0 110 20;
+                    dur: 500;
+                    elasticity: 1000;
                     "
                 sound = "src: #gunshot; poolSize: 20;"
                 

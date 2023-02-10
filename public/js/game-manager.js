@@ -90,6 +90,9 @@ AFRAME.registerComponent('game-manager' , {
         }
     },
 
+    updateSchema : function (evt) {
+    },
+
     //create a new target function
     createTarget() {
         const CONTEXT_AF = document.querySelector("#game-manager").components["game-manager"];
