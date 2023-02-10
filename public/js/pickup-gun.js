@@ -18,6 +18,7 @@ AFRAME.registerComponent('pickup-gun',{
         CONTEXT_AF.scene = document.querySelector("#scene");
         CONTEXT_AF.rCon = document.querySelector("#otc-right");
         CONTEXT_AF.scoreDisplay = document.querySelector("#score-display");
+        CONTEXT_AF.gameManager = document.querySelector("#game-manager");
 
         CONTEXT_AF.el.addEventListener('click', function() {
             //make a copy of the gun
@@ -49,6 +50,18 @@ AFRAME.registerComponent('pickup-gun',{
                 CONTEXT_AF.laser.setAttribute("raycaster", "far:80; interval: 100; objects: .shootMe;");
             }, 500);
             //update score display with instructions
+            let newTarget = document.createElement("a-entity");
+            newTarget.setAttribute("id", "target");
+            newTarget.setAttribute("class", "shootMe");
+            newTarget.setAttribute("gltf-model", "#target_model");
+            newTarget.setAttribute("rotation", "0 180 0");
+            newTarget.setAttribute("position", "0 2 -10");
+            newTarget.setAttribute("scale", "0.5 0.5 0.5");
+            CONTEXT_AF.scene.appendChild(newTarget);
+
+            //initialize game manager
+            CONTEXT_AF.gameManager.setAttribute("game-manager", "");
+
             CONTEXT_AF.scoreDisplay.setAttribute("text", "value: shoot the target to start!");
 
             //ERASE THIS BEFORE HANDING IN IF NOT USING

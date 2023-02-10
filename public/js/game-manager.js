@@ -60,7 +60,6 @@ AFRAME.registerComponent('game-manager' , {
                     CONTEXT_AF.gun.setAttribute("position", "0.5 0.75 -1.5");
                     CONTEXT_AF.gun.setAttribute("rotation", "90 230 0");
                     CONTEXT_AF.gun.setAttribute("class", "interactable");
-
                     console.log("cleaning up...");
                     setTimeout(() => {resolve();}, 100);
                 })
@@ -77,24 +76,10 @@ AFRAME.registerComponent('game-manager' , {
                 CONTEXT_AF.data.score = 0;
                 CONTEXT_AF.data.miss = 0;
                 CONTEXT_AF.data.targets = 0;
+                CONTEXT_AF.data.shots = 0;
             } endGameAsync();
-
-
-            //const CONTEXT_AF = this;
-            //let copy = CONTEXT_AF.gun.cloneNode();
-            //CONTEXT_AF.gun.remove();
-            //CONTEXT_AF.scene.appendChild(copy);
-            //CONTEXT_AF.gun = copy;
-            //CONTEXT_AF.gun.setAttribute("position", "0.5 0.75 -1.5");
-            //CONTEXT_AF.gun.setAttribute("rotation", "90 230 0");
-            //CONTEXT_AF.gun.setAttribute("class", "interactable");
-            //stop the game
             CONTEXT_AF.data.gameOn = false;
         }
-    },
-
-    update: function () {
-        
     },
 
     createTarget() {
@@ -119,4 +104,5 @@ AFRAME.registerComponent('game-manager' , {
             }, 1000);
         }, 200);
     }
+
 });

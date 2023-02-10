@@ -31,5 +31,11 @@ AFRAME.registerComponent('shoot-gun',{
                 CONTEXT_AF.gun.components.sound.playSound();
             }
         });
+    },
+
+    remove : function () {
+        CONTEXT_AF = this;
+        CONTEXT_AF.gameManager = document.querySelector("#game-manager");
+        CONTEXT_AF.gameManager.removeAttribute("game-manager");
     }
 });
