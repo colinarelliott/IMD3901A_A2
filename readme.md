@@ -41,3 +41,7 @@ However, considering all of the challenges and time, I would say that most of it
 5. ```node app.js```
 6. Navigate to http://localhost:8080 on your computer.
 
+#### Sources:
+- All sound effects & music are from my personal Epidemic Sound license
+- All 3D models are made by me in Blender
+
