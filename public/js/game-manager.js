@@ -39,7 +39,7 @@ AFRAME.registerComponent('game-manager' , {
         } else if (CONTEXT_AF.data.gameOn === false && CONTEXT_AF.data.targets >= 10){
             CONTEXT_AF.scoreDisplay.setAttribute("text", 
                 "value: " + CONTEXT_AF.data.score + " / " + CONTEXT_AF.data.targets + " targets hit! \n\n" 
-                + Math.round(CONTEXT_AF.data.shots/2) + " shots fired.");
+                + CONTEXT_AF.data.shots + " shots fired.");
         }
 
         //END OF GAME -> targets = 25
@@ -68,7 +68,7 @@ AFRAME.registerComponent('game-manager' , {
                     //display the final score
                     CONTEXT_AF.scoreDisplay.setAttribute("text", 
                     "value: " + CONTEXT_AF.data.score + " / " + CONTEXT_AF.data.targets + " targets hit! \n\n" 
-                     + Math.round(CONTEXT_AF.data.shots/2) + " shots fired.");
+                     + CONTEXT_AF.data.shots + " shots fired.");
                     //wait 1/10 of a second before returning
                     setTimeout(() => {resolve();}, 100);
                 })
