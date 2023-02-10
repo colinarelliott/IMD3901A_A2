@@ -17,9 +17,9 @@ AFRAME.registerComponent('game-manager' , {
         CONTEXT_AF.target = document.querySelector("#target");
 
         //when the first target is clicked, start the game
-        CONTEXT_AF.target.addEventListener('click', function() {
+        CONTEXT_AF.target.addEventListener('mousedown', function() {
             gameTime = setInterval(CONTEXT_AF.createTarget, 1000); //create a new target every second
-            CONTEXT_AF.data.gameOn = true;
+            CONTEXT_AF.data.gameOn = true; //set the gameOn flag to true
         });
     },
 
