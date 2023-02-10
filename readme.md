@@ -17,7 +17,9 @@ For this assignment I decided to make a simple target practice game. I started o
 2. **shoot-gun.js**: facilitates the ability to shoot the gun during gameplay. Plays sounds, etc.
 3. **collision-check.js**: checks to see if the raycaster is intersecting with the target, set a boolean variable in the schema
 4. **game-manager.js**: runs the gameplay section, tracks statistics and resets the game after end
-5. **laser-swap.js**: (for Quest only) allows the raycaster laser to swap back and forth between hands, WIP
+
+#### Game Controls & Platforms:
+The game is played with only the mouse on PC and only tapping on a phone. Simply follow the instructions on screen and tap / click to play.
 
 #### Gameplay Description:
 The game starts with a gun on a table in front of the user and a single target downrange. The game instructs the user to pick up the gun. Once the gun is picked up, music starts and the game instructs the user to shoot the target. Once the target is shot, the game begins and targets start spawning at random down range. Shoot the targets to get points. Try to shoot them in the least amount of shots possible! Once the game ends (after 50 targets), the gun will be placed back on the table prompting the user to once again pick it up to try again.
