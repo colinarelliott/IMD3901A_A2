@@ -13,16 +13,42 @@ Sounds: from Epidemic Sound license
         <!--A-frame and environment scripts-->
         <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script> <!--A-Frame basic script-->
         <script src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script> <!--Environment script-->
+
+        <!--user-gesture style-->
+        <link rel="stylesheet" href="css/user-gesture.css">
+
         <!--Custom components-->
         <script src="/js/laser-swap.js"></script>
         <script src="/js/pickup-gun.js"></script>
         <script src="/js/shoot-gun.js"></script>
         <script src="/js/collision-check.js"></script>
         <script src="/js/game-manager.js"></script>
+
+        <script>
+            //display user gesture overlay once scene is loaded
+            AFRAME.registerComponent('start-experience', {
+                init : function() {
+                    document.querySelector('#user-gesture-button').style.display = 'block'; //make button visible
+                }
+            });
+
+            //start experience when user clicks button
+            const startExperience = function() {
+                document.querySelector('#user-gesture-overlay').style.display = 'none'; //hide overlay
+            }
+        </script>
+
+        
     </head>
     <body>
+        <!--User Gesture Overlay-->
+        <div id="user-gesture-overlay">
+            <div class="center">
+                <button id="user-gesture-button" onclick="startExperience();">enter game world</button>
+            </div>
+        </div>
         <!--A-frame scene-->
-        <a-scene id="scene">
+        <a-scene id="scene" start-experience>
             <!--Game manager-->
             <a-entity 
                 id="game-manager"
