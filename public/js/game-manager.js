@@ -35,7 +35,7 @@ AFRAME.registerComponent('game-manager' , {
         //if the game has started, display the score. if the game has ended, display the final score
         if (CONTEXT_AF.data.gameOn === true) {
             //display the score
-            CONTEXT_AF.scoreDisplay.setAttribute("text", "value: score: " + CONTEXT_AF.data.score + " | miss: " + CONTEXT_AF.data.miss);
+            CONTEXT_AF.scoreDisplay.setAttribute("text", "value: score: " + CONTEXT_AF.data.score);
         } else if (CONTEXT_AF.data.gameOn === false && CONTEXT_AF.data.targets >= 10){
             CONTEXT_AF.scoreDisplay.setAttribute("text", 
                 "value: " + CONTEXT_AF.data.score + " / " + CONTEXT_AF.data.targets + " targets hit! \n\n" 
