@@ -24,6 +24,7 @@ AFRAME.registerComponent('game-manager' , {
     },
 
     tick: function () {
+        //get the game manager, score display, laser, mouse raycaster, scene, and gun
         const CONTEXT_AF = this;
         CONTEXT_AF.scoreDisplay = document.querySelector("#score-display");
         CONTEXT_AF.laser = document.querySelector("#laser");
@@ -31,6 +32,7 @@ AFRAME.registerComponent('game-manager' , {
         CONTEXT_AF.scene = document.querySelector("#scene");
         CONTEXT_AF.gun = document.querySelector("#gun");
 
+        //if the game has started, display the score. if the game has ended, display the final score
         if (CONTEXT_AF.data.gameOn === true) {
             //display the score
             CONTEXT_AF.scoreDisplay.setAttribute("text", "value: score: " + CONTEXT_AF.data.score + " | miss: " + CONTEXT_AF.data.miss);
@@ -40,10 +42,12 @@ AFRAME.registerComponent('game-manager' , {
                 + CONTEXT_AF.data.miss + " targets missed. \n\n" + Math.round(CONTEXT_AF.data.shots/2) + " shots fired.");
         }
 
-        //end of game - targets = 50
+        //END OF GAME -> targets = 50 
         if (CONTEXT_AF.data.targets >= 10 && CONTEXT_AF.data.gameOn === true) {
+
             //stop creating new targets
             clearInterval(gameTime);
+
             //remove all targets
             let allTargets = document.querySelectorAll(".shootMe");
             for (let i = 0; i < allTargets.length; i++) {
@@ -53,6 +57,7 @@ AFRAME.registerComponent('game-manager' , {
             //reset the gun
             function endGame() {
                 return new Promise(resolve => {
+                    //swap the gun back to on the table
                     let copy = CONTEXT_AF.gun.cloneNode();
                     CONTEXT_AF.gun.remove();
                     CONTEXT_AF.scene.appendChild(copy);
@@ -60,7 +65,11 @@ AFRAME.registerComponent('game-manager' , {
                     CONTEXT_AF.gun.setAttribute("position", "0.5 0.75 -1.5");
                     CONTEXT_AF.gun.setAttribute("rotation", "90 230 0");
                     CONTEXT_AF.gun.setAttribute("class", "interactable");
-                    console.log("cleaning up...");
+                    //display the final score
+                    CONTEXT_AF.scoreDisplay.setAttribute("text", 
+                    "value: " + CONTEXT_AF.data.score + " / " + CONTEXT_AF.data.targets + " targets hit! \n\n" 
+                    + CONTEXT_AF.data.miss + " targets missed. \n\n" + Math.round(CONTEXT_AF.data.shots/2) + " shots fired.");
+                    //wait 1/10 of a second before returning
                     setTimeout(() => {resolve();}, 100);
                 })
               }
@@ -68,10 +77,10 @@ AFRAME.registerComponent('game-manager' , {
             //and then end the game
             async function endGameAsync() {
                 await endGame();
+                //reset the raycaster and game manager, remove ability to shoot, set gameOn to false
                 CONTEXT_AF.mouseRaycaster.setAttribute("raycaster", "far:20; interval: 100; objects: .interactable;");
                 CONTEXT_AF.laser.setAttribute("raycaster", "far:20; interval: 100; objects: .interactable;");
                 CONTEXT_AF.scene.removeAttribute("shoot-gun");
-                console.log("game ended");
                 CONTEXT_AF.data.score = 0;
                 CONTEXT_AF.data.miss = 0;
                 CONTEXT_AF.data.targets = 0;
@@ -81,6 +90,7 @@ AFRAME.registerComponent('game-manager' , {
         }
     },
 
+    //create a new target function
     createTarget() {
         const CONTEXT_AF = document.querySelector("#game-manager").components["game-manager"];
         CONTEXT_AF.scene = document.querySelector("#scene");
