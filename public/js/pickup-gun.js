@@ -4,12 +4,13 @@ AFRAME.registerComponent('pickup-gun',{
     schema : {
         gunPos : {type: 'vec3', default: {x: 0.5, y: 0.75, z: -1.5}},
         gunRot : {type: 'vec3', default: {x: 90, y: 230, z: 0}},
+        holdingGun : {type: 'boolean', default: false}
     },
 
     init: function () {
         const CONTEXT_AF = this;
         //get the gun, camera, mouse raycaster, laser, scene, right controller and score display
-        CONTEXT_AF.holdingGun = false;
+        CONTEXT_AF.data.holdingGun = false;
         CONTEXT_AF.gun = document.querySelector("#gun");
         CONTEXT_AF.camera = document.querySelector("#camera");
         CONTEXT_AF.mouseRaycaster = document.querySelector("#mouse-raycaster");
@@ -37,7 +38,7 @@ AFRAME.registerComponent('pickup-gun',{
                 CONTEXT_AF.gun.setAttribute("position", "0.5 -0.25 -0.5");
                 CONTEXT_AF.gun.setAttribute("rotation", "0 110 0");
             }
-            CONTEXT_AF.holdingGun = true;
+            CONTEXT_AF.data.holdingGun = true;
             //wait 500ms
             setTimeout(() => {  
                 //remove held gun's interactability, add shoot-gun component to scene
@@ -52,13 +53,13 @@ AFRAME.registerComponent('pickup-gun',{
 
             //ERASE THIS BEFORE HANDING IN IF NOT USING
             //WIP BENCH FUNCTIONALITY
-            if (CONTEXT_AF.holdingGun === true) {
+            if (CONTEXT_AF.data.holdingGun === true) {
                 //if the bench is clicked, remove the gun and add it back to the scene
                 CONTEXT_AF.el.addEventListener('click', function() {
                     CONTEXT_AF.scene.appendChild(CONTEXT_AF.gun);
                     CONTEXT_AF.gun.setAttribute("position", CONTEXT_AF.data.gunPos);
                     CONTEXT_AF.gun.setAttribute("rotation", CONTEXT_AF.data.gunRot);
-                    CONTEXT_AF.holdingGun = false;
+                    CONTEXT_AF.data.holdingGun = false;
                     //update raycasters to not shoot targets
                     CONTEXT_AF.mouseRaycaster.setAttribute("raycaster", "far:20; interval: 100; objects: .interactable;");
                     CONTEXT_AF.laser.setAttribute("raycaster", "far:80; interval: 100; objects: .interactable;");

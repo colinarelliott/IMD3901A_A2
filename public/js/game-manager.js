@@ -15,8 +15,6 @@ AFRAME.registerComponent('game-manager' , {
         CONTEXT_AF.gun = document.querySelector("#gun");
         CONTEXT_AF.scene = document.querySelector("#scene");
         CONTEXT_AF.scoreDisplay = document.querySelector("#score-display");
-        CONTEXT_AF.laser = document.querySelector("#laser");
-        CONTEXT_AF.mouseRaycaster = document.querySelector("#mouse-raycaster");
 
         //when the first target is clicked, start the game
         CONTEXT_AF.target.addEventListener('click', function() {
@@ -28,6 +26,10 @@ AFRAME.registerComponent('game-manager' , {
     tick: function () {
         const CONTEXT_AF = this;
         CONTEXT_AF.scoreDisplay = document.querySelector("#score-display");
+        CONTEXT_AF.laser = document.querySelector("#laser");
+        CONTEXT_AF.mouseRaycaster = document.querySelector("#mouse-raycaster");
+        CONTEXT_AF.scene = document.querySelector("#scene");
+
         if (CONTEXT_AF.data.gameOn === true) {
             //display the score
             CONTEXT_AF.scoreDisplay.setAttribute("text", "value: score: " + CONTEXT_AF.data.score + " | miss: " + CONTEXT_AF.data.miss);
@@ -36,7 +38,7 @@ AFRAME.registerComponent('game-manager' , {
         }
 
         //end of game - targets = 50
-        if (CONTEXT_AF.data.targets >= 10 ) {
+        if (CONTEXT_AF.data.targets >= 10 && CONTEXT_AF.data.gameOn === true) {
             //stop creating new targets
             clearInterval(gameTime);
             //remove all targets
@@ -44,23 +46,50 @@ AFRAME.registerComponent('game-manager' , {
             for (let i = 0; i < allTargets.length; i++) {
                 allTargets[i].remove();
             }
+
+            //reset the gun
+            function endGame() {
+                return new Promise(resolve => {
+                    const CONTEXT_AF = this;
+                    let copy = CONTEXT_AF.gun.cloneNode();
+                    CONTEXT_AF.gun.remove();
+                    CONTEXT_AF.scene.appendChild(copy);
+                    CONTEXT_AF.gun = copy;
+                    CONTEXT_AF.gun.setAttribute("position", "0.5 0.75 -1.5");
+                    CONTEXT_AF.gun.setAttribute("rotation", "90 230 0");
+                    CONTEXT_AF.gun.setAttribute("class", "interactable");
+                    CONTEXT_AF.mouseRaycaster.setAttribute("raycaster", "far:20; interval: 100; objects: .interactable;");
+                    CONTEXT_AF.laser.setAttribute("raycaster", "far:20; interval: 100; objects: .interactable;");
+                    CONTEXT_AF.scene.removeAttribute("shoot-gun");
+                    setTimeout(() => {resolve();}, 100);
+                })
+              }
+            
+            //and then end the game
+            async function endGameAsync() {
+                await endGame();
+                CONTEXT_AF.data.gameOn = false;
+                CONTEXT_AF.data.score = 0;
+                CONTEXT_AF.data.miss = 0;
+                CONTEXT_AF.data.targets = 0;
+            } endGameAsync();
+
+
+            //const CONTEXT_AF = this;
+            //let copy = CONTEXT_AF.gun.cloneNode();
+            //CONTEXT_AF.gun.remove();
+            //CONTEXT_AF.scene.appendChild(copy);
+            //CONTEXT_AF.gun = copy;
+            //CONTEXT_AF.gun.setAttribute("position", "0.5 0.75 -1.5");
+            //CONTEXT_AF.gun.setAttribute("rotation", "90 230 0");
+            //CONTEXT_AF.gun.setAttribute("class", "interactable");
             //stop the game
             CONTEXT_AF.data.gameOn = false;
-            //display the final score
-            //CONTEXT_AF.scoreDisplay.setAttribute("text", "value: " + CONTEXT_AF.data.score + " / " + CONTEXT_AF.data.targets + " targets hit! \n\n" + CONTEXT_AF.data.miss + " targets missed.");
-            
         }
     },
 
     update: function () {
-        const CONTEXT_AF = this;
-        let copy = CONTEXT_AF.gun.cloneNode();
-        CONTEXT_AF.gun.remove();
-        CONTEXT_AF.scene.appendChild(copy);
-        CONTEXT_AF.gun = copy;
-        CONTEXT_AF.gun.setAttribute("position", "0.5 0.75 -1.5");
-        CONTEXT_AF.gun.setAttribute("rotation", "90 230 0");
-        CONTEXT_AF.gun.setAttribute("class", "interactable");
+        
     },
 
     createTarget() {
