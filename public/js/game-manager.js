@@ -29,6 +29,7 @@ AFRAME.registerComponent('game-manager' , {
         CONTEXT_AF.laser = document.querySelector("#laser");
         CONTEXT_AF.mouseRaycaster = document.querySelector("#mouse-raycaster");
         CONTEXT_AF.scene = document.querySelector("#scene");
+        CONTEXT_AF.gun = document.querySelector("#gun");
 
         if (CONTEXT_AF.data.gameOn === true) {
             //display the score
@@ -52,7 +53,6 @@ AFRAME.registerComponent('game-manager' , {
             //reset the gun
             function endGame() {
                 return new Promise(resolve => {
-                    const CONTEXT_AF = this;
                     let copy = CONTEXT_AF.gun.cloneNode();
                     CONTEXT_AF.gun.remove();
                     CONTEXT_AF.scene.appendChild(copy);
@@ -72,13 +72,12 @@ AFRAME.registerComponent('game-manager' , {
                 CONTEXT_AF.laser.setAttribute("raycaster", "far:20; interval: 100; objects: .interactable;");
                 CONTEXT_AF.scene.removeAttribute("shoot-gun");
                 console.log("game ended");
-                CONTEXT_AF.data.gameOn = false;
                 CONTEXT_AF.data.score = 0;
                 CONTEXT_AF.data.miss = 0;
                 CONTEXT_AF.data.targets = 0;
                 CONTEXT_AF.data.shots = 0;
+                CONTEXT_AF.data.gameOn = false;
             } endGameAsync();
-            CONTEXT_AF.data.gameOn = false;
         }
     },
 
