@@ -27,7 +27,7 @@
     display: none;
     width: 80%;
     height: 80%;
-    background-color: rgb(235, 79, 38);
+    background-color: rgb(38, 219, 235); /* I slightly modified the colours of the button. */
     color: white;
     padding: 14px 20px;
     margin: 0px 10px 8px 10px;
@@ -37,7 +37,7 @@
   }
   
   #user-gesture-button:hover {
-    background-color: rgb(246, 194, 67);
+    background-color: rgb(34, 113, 147); /* I slightly modified the colours of the button. */
   }
   
   #loading-animation {
